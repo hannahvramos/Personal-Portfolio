@@ -17,6 +17,8 @@ a {
     background-color: lightgray;
     display: flex;
     justify-content: flex-end;
+    position: fixed;
+    width: 100%;
 }
 
 .nav-list a{
@@ -59,3 +61,15 @@ li{
 #profile-link{
     
 }
+
+@media (max-width: 75cm) {
+    html {
+        font-size: 60%;
+    }
+}
+
+@media (max-width: 60cm) {
+    html {
+        font-size: 40%;
+    }
+} 
