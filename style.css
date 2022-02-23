@@ -73,7 +73,7 @@ li {
     align-items: center;
 }
 
-.project-covers {
+.project-title {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
