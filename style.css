@@ -80,6 +80,21 @@ li {
     margin-left: 1rem;
 }
 
+#about {
+    background-color: var(--main-pink);
+    display: flex; 
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    border-bottom: 4px solid var(--main-white);
+}
+
+.about-paragraph {
+    display: display-box; 
+}
+
 #projects {
     display: flex;
     flex-direction: column;
