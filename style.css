@@ -42,7 +42,7 @@ a {
 
 #welcome-section {
     background-color: var(--main-purple);
-    height: 100vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -61,8 +61,11 @@ h2 {
 
 h3 {
     padding: 3.5rem;
+    margin-left: 20%;
+    margin-right: 20%;
     font-size: 2.25rem;
     color: var(--main-white);
+    align-items: center;
 }
 
 h4 {
@@ -83,16 +86,11 @@ li {
 #about {
     background-color: var(--main-pink);
     display: flex; 
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    height: 60vh;
     border-bottom: 4px solid var(--main-white);
-}
-
-.about-paragraph {
-    display: display-box; 
 }
 
 #projects {

@@ -9,10 +9,26 @@ main {
     flex-wrap: wrap;
 }
 
+mainContainer {
+    padding: 0;
+}
+
+nav {
+    padding: 0;
+}
+
+navList {
+    padding: 0;
+}
+
+shipViewer {
+    padding: 0;
+}
+
 figure {
     margin: 1rem;
 }
 
-figure img {
+figure caption{
     max-height: 20rem;
 }

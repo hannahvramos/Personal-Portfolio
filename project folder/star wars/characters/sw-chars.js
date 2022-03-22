@@ -54,3 +54,4 @@ function populateDOM(characters) {
         main.appendChild(personFig)
     })
 }
+populateDOM(people)
