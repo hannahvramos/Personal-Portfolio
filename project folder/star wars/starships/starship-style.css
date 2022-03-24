@@ -1,7 +1,31 @@
-:root {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(65, 65, 65);
+}
+
+.mainContainer {
+    display: flex;
+}
+
+.box {
+    font-size: xx-large;
+    text-align: center;
+}
+
+ul {
+    margin: 1rem;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: large;
 }
 
 main {
@@ -9,19 +33,15 @@ main {
     flex-wrap: wrap;
 }
 
-mainContainer {
+.nav {
+    min-width: 16rem;
+}
+
+.navList {
     padding: 0;
 }
 
-nav {
-    padding: 0;
-}
-
-navList {
-    padding: 0;
-}
-
-shipViewer {
+.shipViewer {
     padding: 0;
 }
 
