@@ -1,6 +1,4 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -43,6 +41,10 @@ main {
 
 .shipViewer {
     padding: 0;
+}
+
+shipViewer img {
+    padding: 5rem;
 }
 
 figure {
