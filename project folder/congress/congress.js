@@ -6,27 +6,27 @@ const senatorDiv = document.querySelector('.senatorsDiv')
 const seniorityHeading = document.querySelector('.seniority')
 const loyaltyList = document.querySelector('.loyaltyList')
 const simpleSenators = simplifiedSenators()
-//const mostSeniorSenator = simplifiedSenators().reduce((acc, senator))
-const biggestMissedVotesPct = simplifiedSenators().reduce(
-    (acc, senator) => acc.missedVotesPct ? acc : senator)
-const biggestMissedVotesList = simplifiedSenators().filter(
-    senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name)
+const mostSeniorSenator = simplifiedSenators().reduce((acc, senator) => {
+    return acc.seniority > senator.seniority ? acc : senator})
+const biggestMissedVotesPct = simplifiedSenators().reduce((acc, senator) => acc.missedVotesPct > senator.missedVotesPct ? acc : senator)
+const biggestMissedVotesList = simplifiedSenators().filter(senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name)
 
 function simplifiedSenators() {
     return senators.map(senator => {
     const middleName = senator.middle_name ? ` ${senator.middle_name} ` : ` `
     return {
         id: senator.id,
-        name: `${senator.first_name}${middlename}${senator.last_name}`,
+        name: `${senator.first_name}${middleName}${senator.last_name}`,
         party: senator.party,
         gender: senator.gender,
-        imgURL: `https://www.govtrack.us/static/legislator-photos/${senator.govetrack_id}-100px.jpeg`,
+        imgURL: `https://www.govtrack.us/static/legislator-photos/${senator.govtrack_id}-200px.jpeg`,
         seniority: +senator.seniority,
-        //missedVotesPct: senator.missedVotes,
-    }}}
+        missedVotesPct: senator.missed_votes_pct,
+        loyaltyPct: senator.votes_with_party_pct,
+    }})}
 
-function popularSenatorDiv(simpleSenators) {
-    simpleSenators.forEach(senator => {
+function populateSenatorDiv(senatorArray) {
+    senatorArray.forEach(senator => {
         const senFigure = document.createElement('figure')
         const figImg = document.createElement('img')
         const figCaption = document.createElement('figcaption')
@@ -36,11 +36,15 @@ function popularSenatorDiv(simpleSenators) {
         senFigure.appendChild(figCaption)
         senatorDiv.appendChild(senFigure)
     })}
-
-    populate.SenatorDiv(simpleSenators)
-    //create figure and image and caotion, set the image src to sneators url, append them to dom
-
-
+seniorityHeading.textContent = `The most senior memeber of the senate is ${mostSeniorMemeber.name} and the biggest missed counts are ${biggestMissedVotesList}`
+populateSenatorDiv(simpleSenators)
+simplifiedSenators().forEach(senator => {
+    if(senator.loyaltyPct === 100) {
+        let listItem = document.createElement('li')
+        listItem.textContent = senator.name
+        loyaltyList.appendChild(listItem)
+    }})
+//?create figure and image and caotion, set the image src to sneators url, append them to dom
 
 //add the senior senators and missed votes
 //UI for sorting by party / gender with count
