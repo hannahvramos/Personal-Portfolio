@@ -2,14 +2,10 @@ import { senators } from '../data/senators.js'
 import { representatives } from '../data/representatives.js'
 
 const allCongressMembers = [...senators, ...representatives]
+
 const senatorDiv = document.querySelector('.senatorsDiv')
 const seniorityHeading = document.querySelector('.seniority')
 const loyaltyList = document.querySelector('.loyaltyList')
-const simpleSenators = simplifiedSenators()
-const mostSeniorSenator = simplifiedSenators().reduce((acc, senator) => {
-    return acc.seniority > senator.seniority ? acc : senator})
-const biggestMissedVotesPct = simplifiedSenators().reduce((acc, senator) => acc.missedVotesPct > senator.missedVotesPct ? acc : senator)
-const biggestMissedVotesList = simplifiedSenators().filter(senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name)
 
 function simplifiedSenators() {
     return senators.map(senator => {
@@ -25,6 +21,8 @@ function simplifiedSenators() {
         loyaltyPct: senator.votes_with_party_pct,
     }})}
 
+const simpleSenators = simplifiedSenators()
+
 function populateSenatorDiv(senatorArray) {
     senatorArray.forEach(senator => {
         const senFigure = document.createElement('figure')
@@ -36,8 +34,16 @@ function populateSenatorDiv(senatorArray) {
         senFigure.appendChild(figCaption)
         senatorDiv.appendChild(senFigure)
     })}
-seniorityHeading.textContent = `The most senior memeber of the senate is ${mostSeniorMemeber.name} and the biggest missed counts are ${biggestMissedVotesList}`
+
 populateSenatorDiv(simpleSenators)
+
+const mostSeniorMember = simplifiedSenators().reduce((acc, senator) => {
+    return acc.seniority > senator.seniority ? acc : senator})
+const biggestMissedVotesPct = simplifiedSenators().reduce((acc, senator) => acc.missedVotesPct > senator.missedVotesPct ? acc : senator)
+const biggestMissedVotesList = simplifiedSenators().filter(senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name)
+
+seniorityHeading.textContent = `The most senior memeber of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}`
+
 simplifiedSenators().forEach(senator => {
     if(senator.loyaltyPct === 100) {
         let listItem = document.createElement('li')

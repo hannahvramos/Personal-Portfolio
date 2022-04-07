@@ -20239,4 +20239,4 @@ export const representative = [
     missed_votes_pct: 0,
     votes_with_party_pct: 95.83,
   },
-]
+];
