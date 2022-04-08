@@ -9,6 +9,8 @@ const loyaltyList = document.querySelector('.loyaltyList')
 const idList = document.querySelector('.idList')
 const republicanList = document.querySelector('.republicanList')
 const democraticList = document.querySelector('.democraticList')
+const femaleList = document.querySelector('.femaleList')
+const maleList = document.querySelector('.maleList')
 
 function simplifiedSenators() {
     return senators.map(senator => {
@@ -67,6 +69,16 @@ simplifiedSenators().forEach(senator => {
         let listItem = document.createElement('li')
         listItem.textContent = senator.name
         democraticList.appendChild(listItem)
+    };
+    if (senator.gender === 'M') {
+        let listItem = document.createElement('li')
+        listItem.textContent = senator.name
+        maleList.appendChild(listItem)
+    };
+    if (senator.gender === 'F') {
+        let listItem = document.createElement('li')
+        listItem.textContent = senator.name
+        femaleList.appendChild(listItem)
     };})
 
 

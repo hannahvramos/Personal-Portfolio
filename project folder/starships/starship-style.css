@@ -2,12 +2,36 @@
     box-sizing: border-box;
 }
 
+header {
+    background-color: black;
+    color: white;
+    font-size: xx-large;
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 body {
     background-color: rgb(65, 65, 65);
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .mainContainer {
     display: flex;
+}
+
+.shipViewer {
+    margin: 1rem;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
 }
 
 .box {
@@ -15,42 +39,20 @@ body {
     text-align: center;
 }
 
+.nav {
+   min-width: 16rem;
+}
+
 ul {
-    margin: 1rem;
     list-style-type: none;
+    text-align: center;
+    margin: 1rem;
+    border: solid darkblue .5rem;
 }
 
 a {
     text-decoration: none;
     color: white;
     font-size: large;
-}
-
-main {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.nav {
-    min-width: 16rem;
-}
-
-.navList {
-    padding: 0;
-}
-
-.shipViewer {
-    padding: 0;
-}
-
-.shipViewer img {
-    padding: 5rem;
-}
-
-figure {
-    margin: 1rem;
-}
-
-figure caption{
-    max-height: 20rem;
+    margin: .5rem 1.5rem .5rem 1.5rem
 }
