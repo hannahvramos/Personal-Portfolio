@@ -1,11 +1,14 @@
 import { senators } from '../data/senators.js'
-import { representatives } from '../data/representatives.js'
+import { representative } from '../data/representatives.js'
 
-const allCongressMembers = [...senators, ...representatives]
+const allCongressMembers = [...senators, ...representative]
 
 const senatorDiv = document.querySelector('.senatorsDiv')
 const seniorityHeading = document.querySelector('.seniority')
 const loyaltyList = document.querySelector('.loyaltyList')
+const idList = document.querySelector('.idList')
+const republicanList = document.querySelector('.republicanList')
+const democraticList = document.querySelector('.democraticList')
 
 function simplifiedSenators() {
     return senators.map(senator => {
@@ -40,19 +43,42 @@ populateSenatorDiv(simpleSenators)
 const mostSeniorMember = simplifiedSenators().reduce((acc, senator) => {
     return acc.seniority > senator.seniority ? acc : senator})
 const biggestMissedVotesPct = simplifiedSenators().reduce((acc, senator) => acc.missedVotesPct > senator.missedVotesPct ? acc : senator)
-const biggestMissedVotesList = simplifiedSenators().filter(senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name)
+const biggestMissedVotesList = simplifiedSenators().filter(senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name).join(' and ')
 
-seniorityHeading.textContent = `The most senior memeber of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}`
+seniorityHeading.textContent = `The most senior member of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}`
 
 simplifiedSenators().forEach(senator => {
-    if(senator.loyaltyPct === 100) {
+    if (senator.loyaltyPct === 100) {
         let listItem = document.createElement('li')
         listItem.textContent = senator.name
         loyaltyList.appendChild(listItem)
-    }})
-//?create figure and image and caotion, set the image src to sneators url, append them to dom
+    };
+    if (senator.party === 'ID') {
+        let listItem = document.createElement('li')
+        listItem.textContent = senator.name
+        idList.appendChild(listItem)
+    };
+    if (senator.party === 'R') {
+        let listItem = document.createElement('li')
+        listItem.textContent = senator.name
+        republicanList.appendChild(listItem)
+    };
+    if (senator.party === 'D') {
+        let listItem = document.createElement('li')
+        listItem.textContent = senator.name
+        democraticList.appendChild(listItem)
+    };})
 
-//add the senior senators and missed votes
+
+
+//const idSenators = simpleSenators.filter(simpleSenators => simpleSenators.party === 'ID')
+//const idSenatorsButton = document.createElement('button')
+//idSenatorsButton.textContent = 'Identity and Democracy Senators'
+//idSenatorsButton.addEventListener ('click', () => populateSenatorDiv(idSenators))
+
+
+//D R ID
+
 //UI for sorting by party / gender with count
 //styling of grid and buttons
 //link their pages

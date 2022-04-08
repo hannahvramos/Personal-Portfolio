@@ -1,5 +1,5 @@
 import { starships } from '../data/starships.js'
-import { removeChildren } from '../utils/index.js'
+import { removeChildren, getLastNumber } from '../utils/index.js'
 
 const nav = document.querySelector('.nav')
 const navList = document.querySelector('.navList')
@@ -17,13 +17,12 @@ function populateNav() {
         let anchor = document.createElement('a')
         anchor.href = ('#')
         anchor.textContent = starship.name
-        anchor.addEventListener('click', () => populateShipView(starship))
-
         const listItem = document.createElement('li') //the ul in html
+        anchor.addEventListener('click', () => populateShipView(starship))
         listItem.appendChild(anchor)
         navList.appendChild(listItem)
-    })
-}
+    })}
+    
 populateNav()
 
 function populateShipView(shipData) {
