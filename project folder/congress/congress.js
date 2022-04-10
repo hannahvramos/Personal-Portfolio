@@ -41,9 +41,6 @@ function populateSenatorDiv(senatorArray) {
 
 populateSenatorDiv(simpleSenators)
 
-//function populateListsDiv() {
- //   removeChildren()
-
 
 const seniorityHeading = document.querySelector('.seniority')
 const loyaltyList = document.querySelector('.loyaltyList')
@@ -61,7 +58,7 @@ const mostSeniorMember = simplifiedSenators().reduce((acc, senator) => {
     return acc.seniority > senator.seniority ? acc : senator})
 const biggestMissedVotesPct = simplifiedSenators().reduce((acc, senator) => acc.missedVotesPct > senator.missedVotesPct ? acc : senator)
 const biggestMissedVotesList = simplifiedSenators().filter(senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name).join(' and ')
-seniorityHeading.textContent = `The most senior member of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}`
+seniorityHeading.textContent = `The most senior member of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}.`
 
 const loyaltyButton = document.createElement('button')
 loyaltyButton.textContent = 'Loyal Senators'
@@ -117,5 +114,6 @@ if (simpleSenator.gender === 'M') {
         maleList.appendChild(listItem)}}))
 header.appendChild(maleSenatorsButton)
 
-
+//remove children
 //incorparate members of the house of representatives
+//style
