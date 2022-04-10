@@ -1,16 +1,15 @@
 import { senators } from '../data/senators.js'
 import { representative } from '../data/representatives.js'
+import { removeChildren } from '../utils/index.js'
 
 const allCongressMembers = [...senators, ...representative]
 
+const header = document.querySelector('header')
+const main = document.querySelector('main')
+
+const listDiv = document.querySelector('.listsDiv')
 const senatorDiv = document.querySelector('.senatorsDiv')
-const seniorityHeading = document.querySelector('.seniority')
-const loyaltyList = document.querySelector('.loyaltyList')
-const idList = document.querySelector('.idList')
-const republicanList = document.querySelector('.republicanList')
-const democraticList = document.querySelector('.democraticList')
-const femaleList = document.querySelector('.femaleList')
-const maleList = document.querySelector('.maleList')
+
 
 function simplifiedSenators() {
     return senators.map(senator => {
@@ -42,56 +41,81 @@ function populateSenatorDiv(senatorArray) {
 
 populateSenatorDiv(simpleSenators)
 
+//function populateListsDiv() {
+ //   removeChildren()
+
+
+const seniorityHeading = document.querySelector('.seniority')
+const loyaltyList = document.querySelector('.loyaltyList')
+const idList = document.querySelector('.idList')
+const republicanList = document.querySelector('.republicanList')
+const democraticList = document.querySelector('.democraticList')
+const femaleList = document.querySelector('.femaleList')
+const maleList = document.querySelector('.maleList')
+
+//const seniorityButton = document.createElement('button')
+//seniorityButton.textContent = 'Seniority'
+//seniorityButton.addEventListener ('click', () => seniorityHeading, loyaltyButton
+
 const mostSeniorMember = simplifiedSenators().reduce((acc, senator) => {
     return acc.seniority > senator.seniority ? acc : senator})
 const biggestMissedVotesPct = simplifiedSenators().reduce((acc, senator) => acc.missedVotesPct > senator.missedVotesPct ? acc : senator)
 const biggestMissedVotesList = simplifiedSenators().filter(senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name).join(' and ')
-
 seniorityHeading.textContent = `The most senior member of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}`
 
-simplifiedSenators().forEach(senator => {
-    if (senator.loyaltyPct === 100) {
+const loyaltyButton = document.createElement('button')
+loyaltyButton.textContent = 'Loyal Senators'
+loyaltyButton.addEventListener ('click', () => simplifiedSenators().forEach(simpleSenator => {
+if (simpleSenator.loyaltyPct === 100) {
+    let listItem = document.createElement('li')
+    listItem.textContent = simpleSenator.name
+    loyaltyList.appendChild(listItem)}}))
+header.appendChild(loyaltyButton)
+
+const idSenatorsButton = document.createElement('button')
+idSenatorsButton.textContent = 'Identity and Democracy Senators'
+idSenatorsButton.addEventListener ('click', () => simplifiedSenators().forEach(simpleSenator => {
+if (simpleSenator.party === 'ID') {
         let listItem = document.createElement('li')
-        listItem.textContent = senator.name
-        loyaltyList.appendChild(listItem)
-    };
-    if (senator.party === 'ID') {
+        listItem.textContent = simpleSenator.name
+        idList.appendChild(listItem)}}))
+header.appendChild(idSenatorsButton)
+
+const republicanSenatorsButton = document.createElement('button')
+republicanSenatorsButton.textContent = 'Republican Senators'
+republicanSenatorsButton.addEventListener ('click', () => simplifiedSenators().forEach(simpleSenator => {
+if (simpleSenator.party === 'R') {
         let listItem = document.createElement('li')
-        listItem.textContent = senator.name
-        idList.appendChild(listItem)
-    };
-    if (senator.party === 'R') {
+        listItem.textContent = simpleSenator.name
+        republicanList.appendChild(listItem)}}))
+header.appendChild(republicanSenatorsButton)
+
+const democraticSenatorsButton = document.createElement('button')
+democraticSenatorsButton.textContent = 'Democratic Senators'
+democraticSenatorsButton.addEventListener ('click', () => simplifiedSenators().forEach(simpleSenator => {
+if (simpleSenator.party === 'D') {
         let listItem = document.createElement('li')
-        listItem.textContent = senator.name
-        republicanList.appendChild(listItem)
-    };
-    if (senator.party === 'D') {
+        listItem.textContent = simpleSenator.name
+        democraticList.appendChild(listItem)}}))
+header.appendChild(democraticSenatorsButton)
+
+const femaleSenatorsButton = document.createElement('button')
+femaleSenatorsButton.textContent = 'Female Senators'
+femaleSenatorsButton.addEventListener ('click', () => simplifiedSenators().forEach(simpleSenator => {
+if (simpleSenator.gender === 'F') {
         let listItem = document.createElement('li')
-        listItem.textContent = senator.name
-        democraticList.appendChild(listItem)
-    };
-    if (senator.gender === 'M') {
+        listItem.textContent = simpleSenator.name
+        femaleList.appendChild(listItem)}}))
+header.appendChild(femaleSenatorsButton)
+
+const maleSenatorsButton = document.createElement('button')
+maleSenatorsButton.textContent = 'Male Senators'
+maleSenatorsButton.addEventListener ('click', () => simplifiedSenators().forEach(simpleSenator => {
+if (simpleSenator.gender === 'M') {
         let listItem = document.createElement('li')
-        listItem.textContent = senator.name
-        maleList.appendChild(listItem)
-    };
-    if (senator.gender === 'F') {
-        let listItem = document.createElement('li')
-        listItem.textContent = senator.name
-        femaleList.appendChild(listItem)
-    };})
+        listItem.textContent = simpleSenator.name
+        maleList.appendChild(listItem)}}))
+header.appendChild(maleSenatorsButton)
 
 
-
-//const idSenators = simpleSenators.filter(simpleSenators => simpleSenators.party === 'ID')
-//const idSenatorsButton = document.createElement('button')
-//idSenatorsButton.textContent = 'Identity and Democracy Senators'
-//idSenatorsButton.addEventListener ('click', () => populateSenatorDiv(idSenators))
-
-
-//D R ID
-
-//UI for sorting by party / gender with count
-//styling of grid and buttons
-//link their pages
 //incorparate members of the house of representatives
