@@ -12,6 +12,7 @@ header {
 h1 {
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 1rem;
 }
 
 button {
@@ -45,9 +46,13 @@ figCaption {
 
 .listsDiv {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 2rem;
+    justify-content: space-between;
 }
+
 .senatorsDiv {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }

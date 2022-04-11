@@ -50,15 +50,10 @@ const democraticList = document.querySelector('.democraticList')
 const femaleList = document.querySelector('.femaleList')
 const maleList = document.querySelector('.maleList')
 
-//const seniorityButton = document.createElement('button')
-//seniorityButton.textContent = 'Seniority'
-//seniorityButton.addEventListener ('click', () => seniorityHeading, loyaltyButton
-
 const mostSeniorMember = simplifiedSenators().reduce((acc, senator) => {
     return acc.seniority > senator.seniority ? acc : senator})
 const biggestMissedVotesPct = simplifiedSenators().reduce((acc, senator) => acc.missedVotesPct > senator.missedVotesPct ? acc : senator)
 const biggestMissedVotesList = simplifiedSenators().filter(senator => senator.missedVotesPct === biggestMissedVotesPct.missedVotesPct).map(senator => senator.name).join(' and ')
-seniorityHeading.textContent = `The most senior member of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}.`
 
 const loyaltyButton = document.createElement('button')
 loyaltyButton.textContent = 'Loyal Senators'
@@ -113,6 +108,12 @@ if (simpleSenator.gender === 'M') {
         listItem.textContent = simpleSenator.name
         maleList.appendChild(listItem)}}))
 header.appendChild(maleSenatorsButton)
+
+const seniorityButton = document.createElement('button')
+seniorityButton.textContent = 'Seniority'
+header.appendChild(seniorityButton)
+seniorityButton.addEventListener ('click', () => populateListsDiv(seniorityHeading))
+seniorityHeading.textContent = `The most senior member of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}.`
 
 //remove children
 //incorparate members of the house of representatives
