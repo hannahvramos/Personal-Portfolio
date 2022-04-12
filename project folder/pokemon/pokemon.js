@@ -7,15 +7,22 @@ function getAPIData(url) {
         console.error(error)
     }}
 
-async function loadPokemon() {
-   const data = await getAPIData(`https://pokeapi.co/api/v2/pokemon/eevee`)
+async function loadPokemon(offset = 0, limit = 25) {
+   const pokeData = await getAPIData(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
+   const pokeResults = pokeData.results
+   for ( const nameAndUrl of pokeResults ) {
+    const pokemon = await getAPIData(nameAndUrl.url)
+
+   }
+   
 populatePokeGrid(pokeData)
 }
 
 const pokeGrid = document.querySelector('.pokeGrid')
 
-function populatePokeGrid(pokemonArray) {
-    populatePokeCard(pokemon)}
+//function populatePokeGrid(pokemonArray) {
+//   populatePokeCard(pokemon)
+//    console.log(pokemonArray.results)}
 
 function populatePokeCard(pokemon) {
     const pokeScene = document.createElement('div')
