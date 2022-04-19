@@ -1,17 +1,28 @@
 
 const getAPIData = async (url) => {
-    try {
-        const result = await fetch(url)
-        return await result.json()
-    } catch (error) {
-        console.error(error)
+  try {
+    const result = await fetch(url)
+    return await result.json()
+  } catch (error) {
+    console.error(error)
     }}
 
+//const loadedPokemon
+
 async function loadPokemon(offset = 0, limit = 25) {
-   const pokeData = await getAPIData(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
-   //const pokeResults = pokeData.results
-   for ( const nameAndUrl of pokeData.results ) {
+  const pokeData = await getAPIData(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
+  //const pokeResults = pokeData.results
+  for ( const nameAndUrl of pokeData.results ) {
     const pokemon = await getAPIData(nameAndUrl.url)
+    const simplifiedPokemon = {
+      id: pokemon.id,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      name: pokemon.name,
+      type: pokemon.type,
+      abilities: pokemon.abilities,
+      moves: pokemon.moves.slice(0,3)
+    }
     populatePokeCard(pokemon)
    }}
 
@@ -21,24 +32,25 @@ async function loadPokemon(offset = 0, limit = 25) {
 //console.log(pokemonArray.results)}
 
 class Pokemon {
-    constructor(name, height, weight, abilities, types) {
-        this.id = 9001,
-        this.name = name,
-        this.height = height,
-        this.weight = weight,
-        this.abilities = abilities,
-        this.types = types
+  constructor(name, height, weight, abilities, types, moves) {
+    this.id = 9001,
+    this.name = name,
+    this.height = height,
+    this.weight = weight,
+    this.abilities = abilities,
+    this.types = types,
+    this.moves = moves
 }}
 
 function populatePokeCard(pokemon) {
-    const pokeScene = document.createElement('div')
-    const pokeCard = document.createElement('div')
-    pokeScene.className = 'scene'
-    pokeCard.className = 'card'
-    pokeCard.addEventListener('click', () => pokeCard.classList.toggle('is-flipped'))
-    pokeCard.appendChild(populateCardFront(pokemon))
-    pokeScene.appendChild(pokeCard)
-    pokeGrid.appendChild(pokeScene)
+  const pokeScene = document.createElement('div')
+  const pokeCard = document.createElement('div')
+  pokeScene.className = 'scene'
+  pokeCard.className = 'card'
+  pokeCard.addEventListener('click', () => pokeCard.classList.toggle('is-flipped'))
+  pokeCard.appendChild(populateCardFront(pokemon))
+  pokeScene.appendChild(pokeCard)
+  pokeGrid.appendChild(pokeScene)
 }
 
 const newButton = document.createElement('button')
@@ -62,15 +74,24 @@ populatePokeCard(newPokemon)})
 
 
 function populateCardFront(pokemon) {
-const pokeFront = document.createElement('figure')
-const pokeImg = document.createElement('img')
-const pokeCaption = document.createElement('figcaption')
-pokeFront.className = 'cardFace'
-pokeImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/offical-artwork/143.png`
-pokeCaption.textContent = pokemon.name
-pokeFront.appendChild(pokeImg)
-pokeFront.appendChild(pokeCaption)
-return pokeFront
+  const pokeFront = document.createElement('figure')
+    pokeFront.className = 'cardFace'
+    const pokeType1 = pokemon.types[0].type.name
+    //pokeFront.style.setProperty('background', getPokeTypeColor(pokeType1))
+    //if (pokeType2) {
+      //pokeFront.style.setProperty('background', 'linear-gradient)
+    }
+  const pokeImg = document.createElement('img')
+    if (pokemon.id > 9000) {
+      pokeImg.src = '../images/pokemonlogo.png'
+    } else {
+    pokeImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/offical-artwork/${pokemon.id}.png`
+    }
+  const pokeCaption = document.createElement('figcaption')
+    pokeCaption.textContent = pokemon.name
+  pokeFront.appendChild(pokeImg)
+  pokeFront.appendChild(pokeCaption)
+  return pokeFront
 }
 
 function populateCardBack(pokemon) {
@@ -85,6 +106,24 @@ function populateCardBack(pokemon) {
     const listItem = document.createElement('li')
     listItem.textContent = abilityItem.ability.name
     abilityList.appendChild(listItem)})
-  return pokeBack}
+  return pokeBack
+}
 
-loadPokemon(0, 25)
+function getPokeTypeColor(pokeType) {
+  let typeColor
+    //if(pokeType === "grass") color = #00FF00      >or you can do>>
+    switch (pokeType) {
+      case 'grass':
+        color = '#00FF00'
+        break
+    }
+}
+
+await loadPokemon(0, 25)
+
+function getPokemonByType(type) {
+  return loadedPokemon.filter((pokemon) => pokemon.types[0].type.name === type)
+}
+
+//figure out how to display count
+//colors, buttons, searches, etc
