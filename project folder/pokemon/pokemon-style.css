@@ -18,11 +18,11 @@
 .card {
     width: 100%;
     height: 100%;
-    position: relative;
     cursor: pointer;
     transition: transform 1s;
     transform-style: preserve-3d;
-    color: navy;
+    text-transform: capitalize;
+    position: relative;
 }
 
 .cardFace {
@@ -30,7 +30,6 @@
     height: 100%;
     position: absolute;
     backface-visibility: hidden;
-    color: navy; 
 }
 
 .card.is-flipped {
@@ -38,11 +37,18 @@
 }
 
 .front {
-    background-color: navy;
+    background-color: plum;
 }
 
 .back {
-    background: navy;
+    background: gray;
+    transform: rotateY(180deg);
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 figure img {
@@ -51,4 +57,5 @@ figure img {
 
 figcaption {
     text-align: center;
+    padding: 0.5rem;
 }

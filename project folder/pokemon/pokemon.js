@@ -1,4 +1,3 @@
-
 const getAPIData = async (url) => {
   try {
     const result = await fetch(url)
@@ -10,9 +9,9 @@ const getAPIData = async (url) => {
 const loadedPokemon = []
 
 async function loadPokemon(offset = 0, limit = 25) {
-  const pokeData = await getAPIData(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
+  const pokeData = await getAPIData(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,)
   //const pokeResults = pokeData.results
-  for ( const nameAndUrl of pokeData.results ) {
+  for (const nameAndUrl of pokeData.results) {
     const pokemon = await getAPIData(nameAndUrl.url)
     const simplifiedPokemon = {
       id: pokemon.id,
@@ -24,36 +23,22 @@ async function loadPokemon(offset = 0, limit = 25) {
       moves: pokemon.moves.slice(0,3)
     }
     loadedPokemon.push(simplifiedPokemon)
-    populatePokeCard(pokemon)
+    populatePokeCard(simplifiedPokemon)
    }}
 
-//const pokeGrid = document.querySelector('.pokeGrid')
-//function populatePokeGrid(pokemonArray) {
+
 //populatePokeCard(pokemon)
 //console.log(pokemonArray.results)}
 
 class Pokemon {
-  constructor(name, height, weight, abilities, types, moves) {
-    this.id = 9001,
-    this.name = name,
-    this.height = height,
-    this.weight = weight,
-    this.abilities = abilities,
-    this.types = types,
-    this.moves = moves
+  constructor(name, height, weight, abilities, types) {
+    ;(this.id = 9001),
+    (this.name = name),
+    (this.height = height),
+    (this.weight = weight),
+    (this.abilities = abilities),
+    (this.types = types)
 }}
-
-function populatePokeCard(pokemon) {
-  const pokeScene = document.createElement('div')
-  const pokeCard = document.createElement('div')
-  pokeScene.className = 'scene'
-  pokeCard.className = 'card'
-  pokeCard.addEventListener('click', () => pokeCard.classList.toggle('is-flipped'))
-  pokeCard.appendChild(populateCardFront(pokemon))
-  pokeCard.appendChild(populateCardBack(pokemon))
-  pokeScene.appendChild(pokeCard)
-  pokeGrid.appendChild(pokeScene)
-}
 
 const newButton = document.createElement('button')
 newButton.textContent = 'New Pokemon'
@@ -63,8 +48,8 @@ newButton.addEventListener('click', () => {
 const pokeName = prompt('What is the name of your new Pokemon?', 'Thoremon')
 const pokeHeight = prompt("What is the Pokemon's height?", 20)
 const pokeWeight = prompt("What is the Pokemon's weight?", 1000)
-const pokeAbilities= prompt("What are your Pokemon's abilities? (use a comman-separated list)")
-const pokeTypes = prompt("What are your Pokemon's types? (up to 2 types separated by a space)")
+const pokeAbilities= prompt("What are your Pokemon's abilities? (use a comma-separated list)",)
+const pokeTypes = prompt("What are your Pokemon's types? (up to 2 types separated by a space)",)
 const newPokemon = new Pokemon(
   pokeName,
   pokeHeight,
@@ -74,12 +59,37 @@ const newPokemon = new Pokemon(
 )
 populatePokeCard(newPokemon)})
 
+function makeAbilitiesArray(commaString) {
+  return commaString.split(',').map((abilityName) => {
+    return {
+      ability: { name: abilityName },
+    }})}
+
+function makeTypesArray(spacedString) {
+  return spacedString.split(' ').map((typeName) => {
+     return {
+       type: { name: typeName },
+     }})}
+
+const pokeGrid = document.querySelector('.pokeGrid')
+
+function populatePokeCard(pokemon) {
+  const pokeScene = document.createElement('div')
+  pokeScene.className = 'scene'
+  const pokeCard = document.createElement('div')
+  pokeCard.className = 'card'
+  pokeCard.addEventListener('click', () => pokeCard.classList.toggle('is-flipped'),)
+  pokeCard.appendChild(populateCardFront(pokemon))
+  pokeCard.appendChild(populateCardBack(pokemon))
+  pokeScene.appendChild(pokeCard)
+  pokeGrid.appendChild(pokeScene)
+}
 
 function populateCardFront(pokemon) {
   const pokeFront = document.createElement('figure')
-    pokeFront.className = 'cardFace'
+    pokeFront.className = 'cardFace front'
     const pokeType1 = pokemon.types[0].type.name
-    //pokeFront.style.setProperty('background', getPokeTypeColor(pokeType1))
+    pokeFront.style.setProperty('background', getPokeTypeColor(pokeType1))
     //if (pokeType2) {
       //pokeFront.style.setProperty('background', 'linear-gradient)
     //}
@@ -98,26 +108,55 @@ function populateCardFront(pokemon) {
 
 function populateCardBack(pokemon) {
   const pokeBack = document.createElement('div')
-  const label = document.createElement('h4')
-  const abilityList = document.createElement('ul')
   pokeBack.className = 'cardFace back'
+  const label = document.createElement('h4')
   label.textContent = 'Abilities'
   pokeBack.appendChild(label)
-  pokeBack.appendChild(abilityList)
+  const abilityList = document.createElement('ul')
   pokemon.abilities.forEach((abilityItem) => {
     const listItem = document.createElement('li')
     listItem.textContent = abilityItem.ability.name
     abilityList.appendChild(listItem)})
+  pokeBack.appendChild(abilityList)
   return pokeBack
 }
 
 function getPokeTypeColor(pokeType) {
-  let typeColor
+  let color
     //if(pokeType === "grass") color = #00FF00      >or you can do>>
     switch (pokeType) {
       case 'grass':
         color = '#00FF00'
         break
+      case 'fire':
+        color = '#FF0000'
+        break
+      case 'water':
+        color = '#0000FF'
+        break
+      case 'bug':
+        color = '#7FFF00'
+        break
+      case 'normal':
+        color = '#F5F5DC'
+        break
+      case 'flying':
+        color = '#00FFFF'
+        break
+      case 'poison':
+        color = '#C300FF'
+        break
+      case 'electric':
+        color = '#C8FF00'
+        break
+      case 'psychic':
+        color = 'pink'
+        break
+      case 'ground':
+        color = 'brown'
+        break
+      default:
+        color = '#888888'
     }
     return color
 }
@@ -129,4 +168,9 @@ function getPokemonByType(type) {
 }
 
 //figure out how to display count
-//colors, buttons, searches, etc
+//type colors, icons, buttons, searches, etc
+//new pokemon
+//capitalize first letters
+//center grid
+//add more info to the back
+//format the cards better
