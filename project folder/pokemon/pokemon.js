@@ -7,7 +7,7 @@ const getAPIData = async (url) => {
     console.error(error)
     }}
 
-//const loadedPokemon
+const loadedPokemon = []
 
 async function loadPokemon(offset = 0, limit = 25) {
   const pokeData = await getAPIData(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
@@ -23,6 +23,7 @@ async function loadPokemon(offset = 0, limit = 25) {
       abilities: pokemon.abilities,
       moves: pokemon.moves.slice(0,3)
     }
+    loadedPokemon.push(simplifiedPokemon)
     populatePokeCard(pokemon)
    }}
 
@@ -49,6 +50,7 @@ function populatePokeCard(pokemon) {
   pokeCard.className = 'card'
   pokeCard.addEventListener('click', () => pokeCard.classList.toggle('is-flipped'))
   pokeCard.appendChild(populateCardFront(pokemon))
+  pokeCard.appendChild(populateCardBack(pokemon))
   pokeScene.appendChild(pokeCard)
   pokeGrid.appendChild(pokeScene)
 }
@@ -80,7 +82,7 @@ function populateCardFront(pokemon) {
     //pokeFront.style.setProperty('background', getPokeTypeColor(pokeType1))
     //if (pokeType2) {
       //pokeFront.style.setProperty('background', 'linear-gradient)
-    }
+    //}
   const pokeImg = document.createElement('img')
     if (pokemon.id > 9000) {
       pokeImg.src = '../images/pokemonlogo.png'
@@ -117,6 +119,7 @@ function getPokeTypeColor(pokeType) {
         color = '#00FF00'
         break
     }
+    return color
 }
 
 await loadPokemon(0, 25)
