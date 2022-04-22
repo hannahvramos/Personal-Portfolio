@@ -1,3 +1,5 @@
+import { removeChildren } from '../utils/index.js'
+
 const getAPIData = async (url) => {
   try {
     const result = await fetch(url)
@@ -35,16 +37,16 @@ class Pokemon {
     (this.types = types)
 }}
 
+const header = document.querySelector('header')
 const newButton = document.createElement('button')
 newButton.textContent = 'New Pokemon'
-const header = document.querySelector('header')
 header.appendChild(newButton)
 newButton.addEventListener('click', () => {
 const pokeName = prompt('What is the name of your new Pokemon?', ' ')
-const pokeHeight = prompt("What is the Pokemon's height?", 20)
-const pokeWeight = prompt("What is the Pokemon's weight?", 1000)
-const pokeAbilities= prompt("What are your Pokemon's abilities? (use a comma-separated list)",)
-const pokeTypes = prompt("What are your Pokemon's types? (up to 2 types separated by a space)",)
+const pokeHeight = prompt("What is the Pokemon's height?", )
+const pokeWeight = prompt("What is the Pokemon's weight?", )
+const pokeAbilities= prompt("What are your Pokemon's abilities? (seperate by commas)",)
+const pokeTypes = prompt("What are your Pokemon's types? (1-2 types, separate by a space)",)
 const newPokemon = new Pokemon(
   pokeName,
   pokeHeight,
@@ -128,6 +130,14 @@ function populateCardBack(pokemon) {
   pokeBack.appendChild(abilityList)
   return pokeBack
 }
+
+const idButton = document.createElement('button')
+idButton.textContent = 'Find by ID'
+idButton.addEventListener('click', () => {
+  const pokeID = prompt("Pokemon ID or Name",)
+  //console.log('in progress')
+  })
+header.appendChild(idButton)
 
 function getPokeTypeColor(pokeType) {
   let color
