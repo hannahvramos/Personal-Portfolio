@@ -3,8 +3,37 @@
     box-sizing: border-box;
 }
 
+h1 {
+    font-size: xx-large;
+    margin: 1.5rem;
+    border: solid gold 3px;
+    padding: 1rem;
+}
+
+h2 {
+    font-size: large;
+    margin-bottom: 0.25rem;
+}
+
+header {
+    height: 300px;
+    color: whitesmoke;
+    text-align: center;
+    justify-content: center;
+}
+
 body {
     background-color: rgb(59, 43, 24);
+}
+
+button {
+    width: 10rem;
+    height: 4rem;
+    margin: 2rem;
+    border-radius: 5px;
+    background-color: firebrick;
+    color: white;
+    font-size: large;
 }
 
 .pokeGrid {
@@ -47,15 +76,19 @@ body {
     padding: 0.5rem;
     background: rgb(96, 118, 189);
     transform: rotateY(180deg);
-    text-align: center;
-    
-}
-
- ul {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: large;
 }
 
+ul {
+   display: flex;
+   flex-wrap: wrap;
+   text-align: start;
+   
+}
 
 figure {
     display: flex;

@@ -10,7 +10,6 @@ const loadedPokemon = []
 
 async function loadPokemon(offset = 0, limit = 25) {
   const pokeData = await getAPIData(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,)
-  //const pokeResults = pokeData.results
   for (const nameAndUrl of pokeData.results) {
     const pokemon = await getAPIData(nameAndUrl.url)
     const simplifiedPokemon = {
@@ -25,10 +24,6 @@ async function loadPokemon(offset = 0, limit = 25) {
     loadedPokemon.push(simplifiedPokemon)
     populatePokeCard(simplifiedPokemon)
    }}
-
-
-//populatePokeCard(pokemon)
-//console.log(pokemonArray.results)}
 
 class Pokemon {
   constructor(name, height, weight, abilities, types) {
@@ -58,6 +53,7 @@ const newPokemon = new Pokemon(
   makeTypesArray(pokeTypes),
 )
 populatePokeCard(newPokemon)})
+
 
 function makeAbilitiesArray(commaString) {
   return commaString.split(',').map((abilityName) => {
@@ -89,20 +85,20 @@ function populateCardFront(pokemon) {
   const pokeFront = document.createElement('figure')
     pokeFront.className = 'cardFace front'
     const pokeType1 = pokemon.types[0].type.name
+    const pokeType2 = pokemon.types[1]?.type.name
     pokeFront.style.setProperty('background', getPokeTypeColor(pokeType1))
-    //if (pokeType2) {
-      //pokeFront.style.setProperty('background', 'linear-gradient)
-    //}
+      if(pokeType2) {
+      pokeFront.style.setProperty('background', `linear-gradient${getPokeTypeColor(pokeType1)}, ${getPokeTypeColor(pokeType2)})`)}
   const pokeImg = document.createElement('img')
     if (pokemon.id > 9000) {
-      pokeImg.src = '../images/pokemonlogo.png'
+      pokeImg.src = `https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/512px-Pok%C3%A9_Ball_icon.svg.png`
     } else {
     pokeImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
     }
   const pokeCaption = document.createElement('figcaption')
     pokeCaption.textContent = pokemon.name
   //const pokeTypeIcon = document.createElement('img')
-    //pokeFront.style.setProperty('img', getPokeTypeIcon(pokeType1))
+  //pokeFront.style.setProperty('img', getPokeTypeIcon(pokeType1))
   //pokeFront.appendChild(pokeTypeIcon)
   pokeFront.appendChild(pokeImg)
   pokeFront.appendChild(pokeCaption)
@@ -195,33 +191,14 @@ function getPokeTypeColor(pokeType) {
     }
     return color
 }
-
-//function getPokeTypeIcon(pokeType) {
-  //let src
-   // switch (pokeType) {
-    //  case 'normal':
-    //    src = `https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Pok%C3%A9mon_Normal_Type_Icon.svg/120px-Pok%C3%A9mon_Normal_Type_Icon.svg.png`
-    //    break
-   //   case 'fire':
-    //    src = `https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Pok%C3%A9mon_Fire_Type_Icon.svg/120px-Pok%C3%A9mon_Fire_Type_Icon.svg.png`
-    //    break
-   //   case 'water':
-    //    src = `https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pok%C3%A9mon_Water_Type_Icon.svg/120px-Pok%C3%A9mon_Water_Type_Icon.svg.png`
-   //     break
-  //  }
-  //  return src }
   
+function getPokemonByType(type) {
+  return loadedPokemon.filter((pokemon) => {
+    if(pokemon.types[0].type.name === type)
+      return pokemon
+    if((pokemon.types[1]?.type.name) && (pokemon.types[1].type.name === type)) {
+      return pokemon }})}
 
 await loadPokemon(0, 25)
 
-function getPokemonByType(type) {
-  return loadedPokemon.filter((pokemon) => pokemon.types[0].type.name === type)
-}
-
-//figure out how to display count
-//type colors, icons, buttons, searches, etc
-//new pokemon
-//capitalize first letters
-//center grid
-//add more info to the back
-//format the cards better
+//loadmore, sorttype, search name/id
