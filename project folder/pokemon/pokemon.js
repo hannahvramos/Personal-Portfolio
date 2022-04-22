@@ -135,7 +135,7 @@ const idButton = document.createElement('button')
 idButton.textContent = 'Find by ID'
 idButton.addEventListener('click', () => {
   const pokeID = prompt("Pokemon ID or Name",)
-  //console.log('in progress')
+  console.log('in progress')
   })
 header.appendChild(idButton)
 
