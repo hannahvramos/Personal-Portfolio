@@ -3,9 +3,14 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: rgb(59, 43, 24);
+}
+
 .pokeGrid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .scene {
@@ -23,6 +28,8 @@
     transform-style: preserve-3d;
     text-transform: capitalize;
     position: relative;
+    border: solid gold .5rem;
+    border-radius: 5px;
 }
 
 .cardFace {
@@ -36,26 +43,38 @@
     transform: rotateY(180deg);
 }
 
-.front {
-    background-color: plum;
+.back {
+    padding: 0.5rem;
+    background: rgb(96, 118, 189);
+    transform: rotateY(180deg);
+    text-align: center;
+    
 }
 
-.back {
-    background: gray;
-    transform: rotateY(180deg);
+ ul {
+    display: flex;
+    flex-wrap: wrap;
 }
+
 
 figure {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 figure img {
-    width: 200px;
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 6px solid gold;
+    background-color: whitesmoke;
 }
 
 figcaption {
     text-align: center;
     padding: 0.5rem;
+    font-weight: bolder;
+    font-size: x-large;
 }

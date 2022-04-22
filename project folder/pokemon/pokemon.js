@@ -18,7 +18,7 @@ async function loadPokemon(offset = 0, limit = 25) {
       height: pokemon.height,
       weight: pokemon.weight,
       name: pokemon.name,
-      type: pokemon.type,
+      types: pokemon.types,
       abilities: pokemon.abilities,
       moves: pokemon.moves.slice(0,3)
     }
@@ -45,7 +45,7 @@ newButton.textContent = 'New Pokemon'
 const header = document.querySelector('header')
 header.appendChild(newButton)
 newButton.addEventListener('click', () => {
-const pokeName = prompt('What is the name of your new Pokemon?', 'Thoremon')
+const pokeName = prompt('What is the name of your new Pokemon?', ' ')
 const pokeHeight = prompt("What is the Pokemon's height?", 20)
 const pokeWeight = prompt("What is the Pokemon's weight?", 1000)
 const pokeAbilities= prompt("What are your Pokemon's abilities? (use a comma-separated list)",)
@@ -97,10 +97,13 @@ function populateCardFront(pokemon) {
     if (pokemon.id > 9000) {
       pokeImg.src = '../images/pokemonlogo.png'
     } else {
-    pokeImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/offical-artwork/${pokemon.id}.png`
+    pokeImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
     }
   const pokeCaption = document.createElement('figcaption')
     pokeCaption.textContent = pokemon.name
+  //const pokeTypeIcon = document.createElement('img')
+    //pokeFront.style.setProperty('img', getPokeTypeIcon(pokeType1))
+  //pokeFront.appendChild(pokeTypeIcon)
   pokeFront.appendChild(pokeImg)
   pokeFront.appendChild(pokeCaption)
   return pokeFront
@@ -109,9 +112,18 @@ function populateCardFront(pokemon) {
 function populateCardBack(pokemon) {
   const pokeBack = document.createElement('div')
   pokeBack.className = 'cardFace back'
-  const label = document.createElement('h4')
-  label.textContent = 'Abilities'
-  pokeBack.appendChild(label)
+  const idLabel = document.createElement('h4')
+    idLabel.textContent = 'ID: '+ pokemon.id
+    pokeBack.appendChild(idLabel)
+  const heightLabel = document.createElement('h4')
+    heightLabel.textContent = 'Height: '+ pokemon.height
+    pokeBack.appendChild(heightLabel)
+  const weightLabel = document.createElement('h4')
+    weightLabel.textContent = 'Weight: '+ pokemon.weight
+    pokeBack.appendChild(weightLabel)
+  const abilitiesLabel = document.createElement('h4')
+  abilitiesLabel.textContent = 'Abilities'
+  pokeBack.appendChild(abilitiesLabel)
   const abilityList = document.createElement('ul')
   pokemon.abilities.forEach((abilityItem) => {
     const listItem = document.createElement('li')
@@ -123,43 +135,82 @@ function populateCardBack(pokemon) {
 
 function getPokeTypeColor(pokeType) {
   let color
-    //if(pokeType === "grass") color = #00FF00      >or you can do>>
     switch (pokeType) {
-      case 'grass':
-        color = '#00FF00'
+      case 'normal':
+        color = '#A8A878'
         break
       case 'fire':
-        color = '#FF0000'
+        color = '#F08030'
         break
       case 'water':
-        color = '#0000FF'
+        color = '#6890F0'
         break
-      case 'bug':
-        color = '#7FFF00'
-        break
-      case 'normal':
-        color = '#F5F5DC'
+      case 'grass':
+        color = '#78C850'
         break
       case 'flying':
+        color = '#A890F0'
+        break
+      case 'fighting':
         color = '#00FFFF'
         break
       case 'poison':
-        color = '#C300FF'
+        color = '#A040A0'
         break
       case 'electric':
-        color = '#C8FF00'
-        break
-      case 'psychic':
-        color = 'pink'
+        color = '#F8D030'
         break
       case 'ground':
-        color = 'brown'
+        color = '#E0C068'
+        break
+      case 'rock':
+        color = '#B8A038'
+        break
+      case 'psychic':
+        color = '#F85888'
+        break
+      case 'ice':
+        color = '#98D8D8'
+        break
+      case 'bug':
+        color = '#A8B820'
+        break
+      case 'ghost':
+        color = '#705898'
+        break
+      case 'steel':
+        color = '#B8B8D0'
+        break
+      case 'dragon':
+        color = '#7038F8'
+        break
+      case 'dark':
+        color = '#705848'
+        break
+      case 'fairy':
+        color = '#EE99AC'
         break
       default:
-        color = '#888888'
+        color = '#68A090'
     }
     return color
 }
+
+//function getPokeTypeIcon(pokeType) {
+  //let src
+   // switch (pokeType) {
+    //  case 'normal':
+    //    src = `https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Pok%C3%A9mon_Normal_Type_Icon.svg/120px-Pok%C3%A9mon_Normal_Type_Icon.svg.png`
+    //    break
+   //   case 'fire':
+    //    src = `https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Pok%C3%A9mon_Fire_Type_Icon.svg/120px-Pok%C3%A9mon_Fire_Type_Icon.svg.png`
+    //    break
+   //   case 'water':
+    //    src = `https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pok%C3%A9mon_Water_Type_Icon.svg/120px-Pok%C3%A9mon_Water_Type_Icon.svg.png`
+   //     break
+  //  }
+  //  return src }
+  
 
 await loadPokemon(0, 25)
 
