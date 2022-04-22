@@ -78,15 +78,15 @@ button {
     background: rgb(96, 118, 189);
     transform: rotateY(180deg);
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    font-size: large;
+    font-size: medium;
 }
 
 ul {
-   display: flex;
-   flex-wrap: wrap;
+   
    text-align: start;
    
 }
