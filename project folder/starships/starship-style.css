@@ -14,8 +14,9 @@ header {
 }
 
 body {
-    background-color: rgb(65, 65, 65);
+    background: url("https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif") center;
 }
+
 main {
     display: flex;
     flex-wrap: wrap;
@@ -34,6 +35,11 @@ main {
     justify-content: center;
 }
 
+.shipViewer img {
+    padding: 2rem;
+    border: solid darkblue .25rem;
+}
+
 .box {
     font-size: xx-large;
     text-align: center;
@@ -47,7 +53,10 @@ ul {
     list-style-type: none;
     text-align: center;
     margin: 1rem;
-    border: solid darkblue .5rem;
+}
+
+li :hover {
+    color: rgb(255, 130, 213);
 }
 
 a {

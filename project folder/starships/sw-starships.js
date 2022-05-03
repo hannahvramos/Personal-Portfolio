@@ -39,6 +39,8 @@ function populateShipView(shipData) {
     shipViewer.appendChild(shipImage)
 }
 
+
+
 //for (let i = 0; i < starships.length; i++) { 
 //let figure = document.createElement('figure')
 //let figImage = document.createElement('img')

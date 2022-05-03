@@ -1,7 +1,7 @@
 :root {
     --main-white: white;
-    --main-pink: rgb(243, 174, 185);
-    --main-purple: mediumslateblue;
+    --main-pink: rgb(255, 168, 216);
+    --main-purple: rgb(152, 116, 230);
     --main-black: black;
 }
 
@@ -41,7 +41,7 @@ a {
 }
 
 #welcome-section {
-    background-color: var(--main-purple);
+    background: url("https://media.giphy.com/media/l3V0HEiQoSPsfkity/giphy.gif") center, var(--main-purple);
     height: 90vh;
     display: flex;
     align-items: center;

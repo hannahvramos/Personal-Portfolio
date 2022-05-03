@@ -1,6 +1,7 @@
 * {
     margin: 0;
-    font-family:'Times New Roman', Times, serif
+    font-family:'Times New Roman', Times, serif;
+    text-align: center;
 }
 
 header {
@@ -16,8 +17,8 @@ h1 {
 }
 
 button {
-    width: 10rem;
-    height: 4.5rem;
+    width: 15rem;
+    height: 5.5rem;
     margin: 1rem;
     background-color: rgb(16, 16, 72);
     color: white;
@@ -37,11 +38,19 @@ img {
 
 figCaption {
     padding: 0.5rem;
-    text-align: center;
     font-size: large;
     color: white;
     background-color: rgb(16, 16, 72);
     border: solid black .4rem;
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    margin: 1rem;
+    text-align: left;
 }
 
 .listsDiv {

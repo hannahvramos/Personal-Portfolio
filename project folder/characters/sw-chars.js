@@ -30,11 +30,20 @@ const otherCharsButton = document.createElement('button')
 otherCharsButton.textContent = 'Other Characters'
 otherCharsButton.addEventListener ('click', () => populateDOM(otherCharacters))
 
+const gayCharacters = people.filter((person) => { 
+    if (
+    person.name === 'C-3PO' ||
+    person.name === 'R2-D2' ) {
+    return person }})
+const gayCharsButton = document.createElement('button')
+gayCharsButton.textContent = 'LGBTQ+ Characters'
+gayCharsButton.addEventListener ('click', () => populateDOM(gayCharacters))
 
 header.appendChild(allCharsButton)
 header.appendChild(maleCharsButton)
 header.appendChild(femaleCharsButton)
 header.appendChild(otherCharsButton)
+header.appendChild(gayCharsButton)
 
 function populateDOM(characters) {
     removeChildren(main)

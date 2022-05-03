@@ -6,14 +6,14 @@
 
 h1 {
     font-size: xx-large;
-    margin: 1.5rem;
+    margin: 9rem 1.5rem 1.5rem 1.5rem;
     border: solid gold 3px;
     padding: 1rem;
 }
 
 h2 {
     font-size: large;
-    margin-bottom: 0.25rem;
+    margin-bottom: .25rem;
 }
 
 header {
@@ -24,13 +24,14 @@ header {
 }
 
 body {
+    background: url("https://media.giphy.com/media/7T200DTPdx31e/giphy.gif") top repeat-x;
     background-color: rgb(59, 43, 24);
 }
 
 button {
     width: 10rem;
     height: 4rem;
-    margin: 2rem;
+    margin: 1.5rem;
     border-radius: 5px;
     background-color: firebrick;
     color: white;
@@ -86,9 +87,7 @@ button {
 }
 
 ul {
-   
    text-align: start;
-   
 }
 
 figure {
