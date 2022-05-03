@@ -61,7 +61,8 @@ loyaltyButton.addEventListener ('click', () => simplifiedSenators().forEach(simp
 if (simpleSenator.loyaltyPct === 100) {
     let listItem = document.createElement('li')
     listItem.textContent = simpleSenator.name
-    loyaltyList.appendChild(listItem)}}))
+    loyaltyList.appendChild(listItem)
+    listDiv.appendChild(loyaltyList)}}))
 header.appendChild(loyaltyButton)
 
 const idSenatorsButton = document.createElement('button')

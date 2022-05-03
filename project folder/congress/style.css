@@ -33,19 +33,21 @@ img {
     max-height: 100%;
     display: flex;
     justify-content: center;
-    border: solid 1rem;
+    border: solid rgb(136, 10, 10) 1rem;
 }
 
 figCaption {
+    margin-top: 0.25rem;
     padding: 0.5rem;
     font-size: large;
     color: white;
     background-color: rgb(16, 16, 72);
-    border: solid black .4rem;
+    border: solid rgb(136, 10, 10) .4rem;
 }
 
 ul {
     display: flex;
+    flex-wrap: wrap;
 }
 
 li {
@@ -53,11 +55,11 @@ li {
     text-align: left;
 }
 
-.listsDiv {
+.listDiv {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     margin: 2rem;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .senatorsDiv {
