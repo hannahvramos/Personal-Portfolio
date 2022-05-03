@@ -26,6 +26,12 @@ h2 {
     border: dashed rgb(16, 16, 72);
 }
 
+h3 {
+    margin: .3rem;
+    padding: .3rem;
+    border: dashed rgb(16, 16, 72);
+}
+
 button {
     width: 15rem;
     height: 5.5rem;

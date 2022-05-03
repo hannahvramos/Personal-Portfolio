@@ -107,13 +107,15 @@ if (simpleSenator.gender === 'M') {
         listItem.textContent = simpleSenator.name
         maleList.appendChild(listItem)}}))
 header.appendChild(maleSenatorsButton)
+header.appendChild(loyaltyButton)
+
 
 const seniorityHeading = document.querySelector('.seniority')
 //const seniorityButton = document.createElement('button')
 //seniorityButton.textContent = 'Seniority'
 //header.appendChild(seniorityButton)
 seniorityHeading.textContent = `The most senior member of the senate is ${mostSeniorMember.name} and the biggest missed counts are ${biggestMissedVotesList}.`
-seniorityButton.addEventListener('click', () => listDiv.appendChild(seniorityHeading))
+//seniorityButton.addEventListener('click', () => listDiv.appendChild(seniorityHeading))
 
 
 
